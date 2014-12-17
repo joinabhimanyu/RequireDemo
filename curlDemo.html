@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curl JS</title>
+
+<script src="public/scripts/curl.js" type="text/javascript"></script>
+<script>
+
+curl.config({
+	baseUrl: 'public/',
+    // pluginPath: 'bower_components/curl/src/curl/',   /* for some reason plugins are here */
+    paths: {
+        cssx: 'styles/',
+        scriptx: 'scripts/'
+        // my: '../../my-lib/'
+    },
+    // apiName: 'someOtherName'
+    // packages: {
+    //     'my-package': {
+    //         location: 'path/to/my-package',
+    //         main: 'main/main-module-file',
+    //         config: { /* package-specific configuration options */ }
+    //     }
+    // },
+});
+    
+</script>
+
+<script type="text/javascript">
+
+curl(
+        // fetch all of these resources ("dependencies")
+        [
+            'css!cssx/bootstrap.min.css', // a css file
+            'css!cssx/styles.css',
+            // 'css!cssx/alertify.core.css',
+            // 'css!cssx/alertify.default.css',
+            'js!scriptx/jquery-1.10.2.min.js!order',
+            'js!scriptx/lib/underscore.js!order',
+            'scriptx/curlMain',
+            // 'js!scriptx/alertify.js!order',
+            'js!scriptx/bootstrap.min.js!order',
+            'domReady!'
+        ]
+    )
+    // when they are loaded
+    .then(function(link) { 
+    		console.log('Resources loaded'); 
+    	  },
+     	  function(ex) { 
+     	  	var message = 'OH SNAP: ' + ex.message;
+     	  	console.log(message); 
+     	  });
+    
+</script>
+
+</head>
+<body>
+<div class="container">
+<!-- <div class="row" id="code-pen">
+<p data-height="500" data-theme-id="0" data-slug-hash="DhaAx" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/joinabhimanyu/pen/DhaAx/'>DhaAx</a> by abhimanyu chakraborty (<a href='http://codepen.io/joinabhimanyu'>@joinabhimanyu</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="http://codepen.io/assets/embed/ei.js"></script>
+</div> -->
+
+
+<div class="row" id="jumbo">
+<div class="jumbotron">
+<h1>Curl JS is Awesome</h1>
+<p>curl.js is a small and very fast AMD-compliant asynchronous loader. Size: ~4KB (gzipped) using Google's Closure Compiler.</p>
+<p class="well" id="result"></p>
+</div>
+</div>
+
+</div>
+</body>
+</html>
+
+<!-- AMD plugins:
+
+js! -- loads non-AMD javascript files. more info on the wiki
+
+text! -- loads text files
+
+link! -- loads css files via a link element (simple, fast)
+
+css! -- loads css files (lots of options)
+
+domReady! -- resolves when the dom is ready for manipulation
+
+async! -- resolves when a module signals it's ready
+
+i18n! -- loads text strings and other locale-specific constants -->
+

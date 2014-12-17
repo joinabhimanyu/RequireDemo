@@ -1,0 +1,52 @@
+@import 'bourbon/bourbon';
+@import 'susy';
+
+@include font-face(Sensation, '../fonts/Sansation_Light', bold);
+
+@function hsb($h-hsb, $s-hsb, $b-hsb, $a: 1) {
+	@if $b-hsb == 0 {
+		@return hsla(0, 0, 0, $a);	
+	} @else {
+		$l-hsl: ($b-hsb/2) * (2 - ($s-hsb/100));
+		$s-hsl: ($b-hsb * $s-hsb) / if($l-hsl < 50, $l-hsl * 2, 200 - $l-hsl * 2);
+		@return hsla($h-hsb, $s-hsl, $l-hsl, $a);
+	}
+}
+
+$susy: (
+  columns: 12,
+  gutter-position: inside,
+  math: fluid,
+  output: float,
+  flow: rtl,
+);
+
+
+body {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: hsb(129, 52, 50);
+
+	.page-header {
+		font-family: Sensation;
+	}
+
+	susy-container {
+		@include container(80em);
+
+		content {
+			float: left;
+			width: span(8);
+		}
+
+		sidebar {
+			float: left;
+			width: span(4);
+		}
+
+	}
+
+}
+

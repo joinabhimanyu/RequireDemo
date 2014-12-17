@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSB Demo</title>
+<script src="public/scripts/curl.js" type="text/javascript"></script>
+<script type="text/javascript">
+	
+curl.config({
+	baseUrl: 'public/',
+	paths: {
+		cssx: 'styles/',
+		scriptx: 'scripts/'
+	}
+});
+
+curl(
+		[
+			'css!cssx/bootstrap.min.css',
+			'css!cssx/hsbStyles.css',
+			'js!scriptx/jquery-1.10.2.min.js!order',
+			'js!scriptx/lib/underscore.js!order',
+			'js!scriptx/bootstrap.min.js!order',
+			'domReady!'
+		]
+	)
+	.then(function(link) {
+		console.log('Resources loaded');
+	},
+	function(ex) {
+		console.log(ex.message);
+	});
+
+</script>
+
+</head>
+<body>
+<div class="container">
+<p class="page-header"><h1>This is the page content</h1></p>
+</div>
+<div class="susy-container">
+<div class="content">
+<h3>This is the content</h3>
+</div>
+<div class="sidebar">
+<h3>This is the sidebar</h3>
+</div>
+</div>
+</body>
+</html>
